@@ -1,0 +1,72 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lead Intent Scoring</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen text-gray-800">
+
+  <div class="max-w-3xl mx-auto p-6">
+    <h1 class="text-4xl font-bold text-center text-blue-800 mb-6">📊 AI Lead Intent Scoring Dashboard</h1>
+
+    <form id="lead-form" class="bg-white p-6 rounded-lg shadow-md space-y-4 border border-gray-200">
+      <div>
+        <label>Email</label>
+        <input type="email" id="email" required class="w-full border border-gray-300 p-2 rounded">
+      </div>
+      <div>
+        <label>Credit Score</label>
+        <input type="number" id="credit_score" min="300" max="850" required class="w-full border p-2 rounded">
+      </div>
+      <div>
+        <label>Age Group</label>
+        <select id="age_group" required class="w-full border p-2 rounded">
+          <option>18-25</option><option>26-35</option><option>36-50</option><option>51+</option>
+        </select>
+      </div>
+      <div>
+        <label>Family Background</label>
+        <select id="family_background" required class="w-full border p-2 rounded">
+          <option>Single</option><option>Married</option><option>Married with Kids</option>
+        </select>
+      </div>
+      <div>
+        <label>Income (INR)</label>
+        <input type="number" id="income" required class="w-full border p-2 rounded">
+      </div>
+      <div>
+        <label>Comment</label>
+        <textarea id="comment" required class="w-full border p-2 rounded" rows="3"></textarea>
+      </div>
+      <div class="flex items-center">
+        <input type="checkbox" id="consent" required class="mr-2">
+        <label for="consent">I consent to data processing</label>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">🚀 Submit</button>
+      <div id="loading" class="hidden mt-2 text-center">
+        <div class="inline-block w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-sm text-gray-500 mt-1">Scoring lead...</p>
+      </div>
+    </form>
+
+    <div id="results-section" class="mt-10 hidden transition-opacity duration-500">
+      <h2 class="text-2xl font-semibold mb-4 text-green-700">📈 Scored Leads</h2>
+      <table class="w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-4 py-2 text-left">Email</th>
+            <th class="px-4 py-2 text-left">Initial Score</th>
+            <th class="px-4 py-2 text-left">Reranked Score</th>
+            <th class="px-4 py-2 text-left">Comment</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
